@@ -12,28 +12,30 @@ type NewsHandler struct {
 }
 
 type CreateNewsRequest struct {
-	Name         string `json:"name" binding:"name"`
-	ThumbnailURL string `json:"thumbnailURL" binding:"thumbnailURL"`
-	Content      string `json:"content" binding:"content"`
-	Tags         string `json:"tags" binding:"tags"`
+	Name         string `json:"name"`
+	ThumbnailURL string `json:"thumbnailURL"`
+	Content      string `json:"content"`
+	Tags         string `json:"tags"`
 }
 
 type CreateNewsResponse struct {
-	ID string `json:"id" binding:"id"`
+	ID string `json:"id"`
 }
 
 type UpdateNewsRequest struct {
-	Name         string `json:"name" binding:"name"`
-	ThumbnailURL string `json:"thumbnailURL" binding:"thumbnailURL"`
-	Content      string `json:"content" binding:"content"`
-	Tags         string `json:"tags" binding:"tags"`
+	Name         string `json:"name"`
+	ThumbnailURL string `json:"thumbnailURL"`
+	Content      string `json:"content"`
+	Tags         string `json:"tags"`
 }
 
 type GetNewsResponse struct {
-	Name         string `json:"name" binding:"name"`
-	ThumbnailURL string `json:"thumbnailURL" binding:"thumbnailURL"`
-	Content      string `json:"content" binding:"content"`
-	Tags         string `json:"tags" binding:"tags"`
+	Name         string `json:"name"`
+	ThumbnailURL string `json:"thumbnailURL"`
+	Content      string `json:"content"`
+	Tags         string `json:"tags"`
+	CreatedTime  string `json:"createdTime"`
+	UpdatedTime  string `json:"updatedTime"`
 }
 
 func NewNewsHandler(r *gin.RouterGroup, service domain.NewsService) {
@@ -56,6 +58,8 @@ func (h *NewsHandler) GetItem(c *gin.Context) {
 			ThumbnailURL: newsItem.ThumbnailURL,
 			Content:      newsItem.Content,
 			Tags:         newsItem.Tags,
+			CreatedTime:  newsItem.CreatedAt.String(),
+			UpdatedTime:  newsItem.UpdatedAt.String(),
 		})
 	}
 }
